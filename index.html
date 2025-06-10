@@ -14,6 +14,7 @@
       <a href="#portfolio">Портфолио</a>
       <a href="#about">Обо мне</a>
       <a href="#contact">Контакты</a>
+      <a href="#calculator">Калькулятор стоимости</a>
     </nav>
   </header>
 
@@ -30,19 +31,19 @@
         <div class="photo"><img src="https://astahovpro1.ru/wp-content/uploads/2018/04/1g.jpg" alt="Фото 2" /></div>
         <div class="photo"><img src="https://astahovpro1.ru/wp-content/uploads/2018/04/9g.jpg" alt="Фото 3" /></div>
         <div class="photo"><img src="https://astahovpro1.ru/wp-content/uploads/2018/04/21g2.jpg" alt="Фото 4" /></div>
-        <div class="photo"><img src="15.jpg" alt="Фото 1" /></div>
-        <div class="photo"><img src="9.jpg" alt="Фото 2" /></div>
+        <div class="photo"><img src="15.jpeg" alt="Фото 1" /></div>
+        <div class="photo"><img src="9.jpeg" alt="Фото 2" /></div>
         <div class="photo"><img src="DSC09210.jpg" alt="Фото 3" /></div>
-        <div class="photo"><img src="14.jpg" alt="Фото 4" /></div>
-        <div class="photo"><img src="8.jpg" alt="Фото 4" /></div>
+        <div class="photo"><img src="14.jpeg" alt="Фото 4" /></div>
+        <div class="photo"><img src="8.jpeg" alt="Фото 4" /></div>
         <div class="photo"><img src="DSC09129.jpg" alt="Фото 3" /></div>
-        <div class="photo"><img src="7.jpg" alt="Фото 4" /></div>
-        <div class="photo"><img src="13.jpg" alt="Фото 3" /></div>
-        <div class="photo"><img src="6.jpg" alt="Фото 4" /></div>
-        <div class="photo"><img src="12.jpg" alt="Фото 3" /></div>
-        <div class="photo"><img src="10.jpg" alt="Фото 4" /></div>
-        <div class="photo"><img src="5.jpg" alt="Фото 3" /></div>
-        <div class="photo"><img src="11.jpg" alt="Фото 3" /></div>
+        <div class="photo"><img src="7.jpeg" alt="Фото 4" /></div>
+        <div class="photo"><img src="13.jpeg" alt="Фото 3" /></div>
+        <div class="photo"><img src="6.jpeg" alt="Фото 4" /></div>
+        <div class="photo"><img src="12.jpeg" alt="Фото 3" /></div>
+        <div class="photo"><img src="10.jpeg" alt="Фото 4" /></div>
+        <div class="photo"><img src="5.jpeg" alt="Фото 3" /></div>
+        <div class="photo"><img src="11.jpeg" alt="Фото 3" /></div>
         <!-- <div class="photo"><img src="yourphoto4.jpg" alt="Фото 4" /></div>
         <div class="photo"><img src="yourphoto3.jpg" alt="Фото 3" /></div>
         <div class="photo"><img src="yourphoto4.jpg" alt="Фото 4" /></div>
@@ -61,7 +62,7 @@
 
     <section id="about">
       <h3>Обо мне</h3>
-      <p>Я снимаю свадьбы, будто это кино о настоящей любви. Тепло, чувственно и навсегда.</p>
+      <p>Я снимаю свадьбы, как будто это кино о настоящей любви. Тепло, чувственно и навсегда.</p>
     </section>
 
     <section id="contact">
@@ -69,6 +70,73 @@
       <p>Telegram: <a href="https://t.me/Artem_AzhnoV" target="_blank">@Artem_AzhnoV</a></p>
       <p>Телефон: +7 (967) 078 08 88</p>
     </section>
+
+    <div class="price-calculator">
+      <section id="calculator">
+    <h3>Калькулятор стоимости фотосъемки</h3>
+      </section>
+    
+    <div class="input-group">
+        <label for="hours-input">Введите количество часов (от 1 до 11):</label>
+        <input type="number" id="hours-input" min="1" max="11" placeholder="Например: 8">
+    </div>
+    
+    <button id="calculate-btn">Рассчитать стоимость</button>
+    
+    <div class="result-area">
+        <p id="total-cost" class="result-text">Здесь будет результат</p>
+    </div>
+</div>
+<script>
+    // Эта часть отвечает за логику расчетов
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // 1. Находим нужные элементы на странице
+        const hoursInput = document.getElementById('hours-input');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const totalCostElement = document.getElementById('total-cost');
+        
+        // 2. Создаем "справочник" цен. Ключ - это часы, значение - это цена.
+        const priceList = {
+            '1': 6000,
+            '2': 10000,
+            '3': 13000,
+            '4': 16000,
+            '5': 18000,
+            '6': 20000,
+            '7': 22000,
+            '8': 24500,
+            '9': 27000,
+            '10': 30000,
+            '11': 33000
+        };
+
+        // 3. Функция, которая будет выполнять расчет
+        function calculatePrice() {
+            const hours = hoursInput.value;
+            
+            // Проверяем, есть ли введенное количество часов в нашем прайс-листе
+            if (priceList[hours]) {
+                const cost = priceList[hours];
+                // Выводим результат в красивом формате
+                totalCostElement.textContent = `Итоговая стоимость: ${cost.toLocaleString('ru-RU')} ₽`;
+            } else {
+                // Если введено некорректное значение (например, 12 или 0)
+                totalCostElement.textContent = 'Пожалуйста, выберите от 1 до 11 часов';
+            }
+        }
+        
+        // 4. Назначаем действие на кнопку: при нажатии будет запускаться функция calculatePrice
+        calculateBtn.addEventListener('click', calculatePrice);
+
+        // Дополнительно: позволяем считать по нажатию Enter в поле ввода
+        hoursInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                calculatePrice();
+            }
+        });
+    });
+</script>
   </main>
 
   <footer>
