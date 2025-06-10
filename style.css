@@ -109,3 +109,53 @@ footer {
     margin-left: 0;
   }
 }
+
+/* Эта часть отвечает за внешний вид калькулятора */
+    .price-calculator .input-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    .price-calculator label {
+        display: block;
+        margin-bottom: 8px;
+        color: #3d2f2b;
+        line-height: 1.6;
+    }
+    .price-calculator input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-sizing: border-box; /* Важно для правильного отображения */
+        font-size: 16px;
+    }
+    .price-calculator button {
+        width: 100%;
+        padding: 14px;
+        background-color: #d2c3b4; /* Приятный синий цвет */
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .price-calculator button:hover {
+        background-color: #7a5c4b; /* Более темный оттенок при наведении */
+    }
+    .price-calculator .result-area {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .price-calculator .result-text {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+    }
